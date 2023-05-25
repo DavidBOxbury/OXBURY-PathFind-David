@@ -98,7 +98,7 @@
 </head>
 <body translate="no">
 <h1>Oxbury Pathfind Test Run</h1>
-<center><span>Please keep in mind you can only have one charecter per cell & only 2 vectors (P & Q)</span></center>
+<center><span>Please keep in mind you can only have one character per cell & only 2 vectors (P & Q)</span></center>
 <form class="cf" action="?" method="post">
     <div class="half left cf">
         <center>
