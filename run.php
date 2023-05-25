@@ -26,28 +26,28 @@ function pathfind($graph1){
         if ($coordinates_array[$starting_column + 1 . $starting_row] == '.') {
             $coordinates_array[$starting_column + 1 . $starting_row] = 1;
         } else if ($coordinates_array[$starting_column + 1 . $starting_row] == 'Q') {
-            $destination_found = 1;
+            $destination_found = 2;
         }
     }
     if (array_key_exists($starting_column - 1 . $starting_row, $coordinates_array)) {
         if ($coordinates_array[$starting_column - 1 . $starting_row] == '.') {
             $coordinates_array[$starting_column - 1 . $starting_row] = 1;
         } else if ($coordinates_array[$starting_column - 1 . $starting_row] == 'Q') {
-            $destination_found = 1;
+            $destination_found = 2;
         }
     }
     if (array_key_exists($starting_column . ($starting_row + 1), $coordinates_array)) {
         if ($coordinates_array[$starting_column . ($starting_row + 1)] == '.') {
             $coordinates_array[$starting_column . ($starting_row + 1)] = 1;
         } else if ($coordinates_array[$starting_column . ($starting_row + 1)] == 'Q') {
-            $destination_found = 1;
+            $destination_found = 2;
         }
     }
     if (array_key_exists($starting_column . ($starting_row - 1), $coordinates_array)) {
         if ($coordinates_array[$starting_column . ($starting_row - 1)] == '.') {
             $coordinates_array[$starting_column . ($starting_row - 1)] = 1;
         } else if ($coordinates_array[$starting_column . ($starting_row - 1)] == 'Q') {
-            $destination_found = 1;
+            $destination_found = 2;
         }
     }
 
@@ -67,41 +67,45 @@ function pathfind($graph1){
                     if ($coordinates_array[$current_column_neighbor + 1 . $current_row_neighbor] == '.') {
                         $coordinates_array[$current_column_neighbor + 1 . $current_row_neighbor] = $current_number + 1;
                     } else if ($coordinates_array[$current_column_neighbor + 1 . $current_row_neighbor] == 'Q') {
-                        $destination_found = 1;
+                        $destination_found = 2;
                     }
                 }
                 if (array_key_exists($current_column_neighbor - 1 . $current_row_neighbor, $coordinates_array)) {
                     if ($coordinates_array[$current_column_neighbor - 1 . $current_row_neighbor] == '.') {
                         $coordinates_array[$current_column_neighbor - 1 . $current_row_neighbor] = $current_number + 1;
                     } else if ($coordinates_array[$current_column_neighbor - 1 . $current_row_neighbor] == 'Q') {
-                        $destination_found = 1;
+                        $destination_found = 2;
                     }
                 }
                 if (array_key_exists($current_column_neighbor . ($current_row_neighbor + 1), $coordinates_array)) {
                     if ($coordinates_array[$current_column_neighbor . ($current_row_neighbor + 1)] == '.') {
                         $coordinates_array[$current_column_neighbor . ($current_row_neighbor + 1)] = $current_number + 1;
                     } else if ($coordinates_array[$current_column_neighbor . ($current_row_neighbor + 1)] == 'Q') {
-                        $destination_found = 1;
+                        $destination_found = 2;
                     }
                 }
                 if (array_key_exists($current_column_neighbor . ($current_row_neighbor - 1), $coordinates_array)) {
                     if ($coordinates_array[$current_column_neighbor . ($current_row_neighbor - 1)] == '.') {
                         $coordinates_array[$current_column_neighbor . ($current_row_neighbor - 1)] = $current_number + 1;
                     } else if ($coordinates_array[$current_column_neighbor . ($current_row_neighbor - 1)] == 'Q') {
-                        $destination_found = 1;
+                        $destination_found = 2;
                     }
                 }
 
 
             }
 
-            if ((!in_array(".", $coordinates_array))&&$destination_found==0) {
-                die('destination not reachable');
-            }
+    if (!in_array(".", $coordinates_array)) {
+        if ($destination_found==0) {
+            $destination_found+=1;
+        } else if ($destination_found==1) {
+        die('destination not reachable');
+        }
+    }
 
 
             $current_number += 1;
-        } while ($destination_found != 1);
+        } while ($destination_found != 2);
     }
     return $current_number;
 }
